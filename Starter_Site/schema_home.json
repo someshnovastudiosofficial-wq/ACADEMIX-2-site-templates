@@ -1,6 +1,4 @@
 [
-  { "id": "school_name", "label": "School Name", "type": "text" },
-  { "id": "school_logo", "label": "School Logo (Top Right)", "type": "image" },
   { "id": "hero_bg", "label": "Hero Background Image", "type": "image" },
   { "id": "hero_title", "label": "Hero Title", "type": "text" },
   { "id": "hero_subtitle", "label": "Hero Subtitle", "type": "textarea" },
