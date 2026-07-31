@@ -1,0 +1,5 @@
+[
+  { "id": "school_name", "label": "School Name", "type": "text" },
+  { "id": "school_logo", "label": "School Logo", "type": "image" },
+  { "id": "privacy_text", "label": "Privacy Policy Content", "type": "textarea" }
+]

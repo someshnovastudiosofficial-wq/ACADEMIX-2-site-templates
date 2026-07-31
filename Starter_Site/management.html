@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ school_name | default("ACADEMIX Academy") }} - Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --dark: #0f172a; --light: #f8fafc; --text: #334155; --font: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); color: var(--text); background: var(--light); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; transition: 0.3s; }
+        nav.navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-left { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .nav-left a { font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .nav-left a:hover { color: var(--primary); }
+        .nav-right img { height: 50px; width: auto; object-fit: contain; }
+        .page-header { height: 40vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 4rem; margin-top: 80px; }
+        .page-header::before { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,0.8); }
+        .page-header h1 { position: relative; z-index: 2; color: #fff; font-size: 3rem; font-weight: 800; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px 5rem 20px; }
+        .message-box { background: #fff; padding: 3rem; border-left: 5px solid var(--primary); border-radius: 0 1rem 1rem 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin-bottom: 4rem; font-style: italic; font-size: 1.1rem; }
+        h2.section-title { text-align: center; font-size: 2.2rem; color: var(--dark); margin-bottom: 3rem; }
+        .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .board-card { background: #fff; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-align: center; padding-bottom: 2rem; }
+        .board-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 1.5rem; }
+        .board-card h3 { color: var(--dark); font-size: 1.3rem; }
+        .board-card p { color: var(--primary); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+        footer { background: var(--dark); color: #fff; text-align: center; padding: 2rem 5%; font-size: 0.9rem; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            {% for p in pages %}
+                <a href="{{ p.html_file | default("#") }}">{{ p.title | default("Page") }}</a>
+            {% endfor %}
+        </div>
+        <div class="nav-right"><img src="{{ school_logo | default("assets/default-logo.png") }}" alt="Logo"></div>
+    </nav>
+    <header class="page-header" style="background-image: url('{{ management_bg | default("assets/management-placeholder.jpg") }}');">
+        <h1>Leadership & Management</h1>
+    </header>
+    <div class="container">
+        <div class="message-box">
+            "{{ directors_message | default("Education is the passport to the future, for tomorrow belongs to those who prepare for it today. Our management team is deeply committed to fostering an environment where innovation meets tradition.") }}"
+            <br><br><strong>- Board of Directors</strong>
+        </div>
+        <h2 class="section-title">Board Members</h2>
+        <div class="board-grid">
+            {% for member in board_members %}
+            <div class="board-card">
+                <img src="{{ member.member_photo | default("assets/default-avatar.jpg") }}" alt="Photo">
+                <h3>{{ member.member_name | default("Name") }}</h3>
+                <p>{{ member.member_role | default("Title") }}</p>
+            </div>
+            {% else %}
+            <div class="board-card">
+                <img src="assets/default-avatar.jpg" alt="Default">
+                <h3>Dr. Robert Smith</h3>
+                <p>Chairman</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer><p>POWERED BY ACADEMIX 2 a product of Somesh nova studios@2026-all rights reserved</p></footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ school_name | default("ACADEMIX Academy") }} - Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --dark: #0f172a; --light: #f8fafc; --text: #334155; --font: 'Poppins', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); color: var(--text); background: var(--light); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; transition: 0.3s; }
+        nav.navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-left { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .nav-left a { font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .nav-left a:hover { color: var(--primary); }
+        .nav-right img { height: 50px; width: auto; object-fit: contain; }
+        .page-header { height: 40vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 4rem; margin-top: 80px; }
+        .page-header::before { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,0.8); }
+        .page-header h1 { position: relative; z-index: 2; color: #fff; font-size: 3rem; font-weight: 800; }
+        .contact-container { max-width: 1200px; margin: 0 auto; padding: 0 20px 5rem 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-info { background: #fff; padding: 3rem; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .contact-info h2 { color: var(--primary); margin-bottom: 1.5rem; }
+        .contact-info p { font-size: 1.1rem; margin-bottom: 1rem; }
+        .contact-info strong { color: var(--dark); }
+        .map-container iframe { width: 100%; height: 100%; min-height: 400px; border: 0; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        footer { background: var(--dark); color: #fff; text-align: center; padding: 2rem 5%; font-size: 0.9rem; margin-top: auto; }
+        @media (max-width: 768px) { .contact-container { grid-template-columns: 1fr; } .nav-left { gap: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            {% for p in pages %}
+                <a href="{{ p.html_file | default("#") }}">{{ p.title | default("Page") }}</a>
+            {% endfor %}
+        </div>
+        <div class="nav-right"><img src="{{ school_logo | default("assets/default-logo.png") }}" alt="Logo"></div>
+    </nav>
+    <header class="page-header" style="background-image: url('{{ contact_bg | default("assets/contact-placeholder.jpg") }}');">
+        <h1>Contact Us</h1>
+    </header>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p><strong>Address:</strong><br>{{ address | default("123 Education Lane, Learning City, 10001") }}</p>
+            <p><strong>Phone:</strong><br>{{ phone | default("+1 (555) 123-4567") }}</p>
+            <p><strong>Email:</strong><br>{{ email | default("info@academix.edu") }}</p>
+        </div>
+        <div class="map-container">
+            <iframe src="{{ map_url | default("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450937!2d144.9537353155042!3d-37.81720974202157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ5JzAyLjAiUyAxNDTCsDU3JzIxLjMiRQ!5e0!3m2!1sen!2sus!4v1611816751234!5m2!1sen!2sus") }}" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+    <footer><p>POWERED BY ACADEMIX 2 a product of Somesh nova studios@2026-all rights reserved</p></footer>
+</body>
+</html>
