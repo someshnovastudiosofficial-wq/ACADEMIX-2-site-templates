@@ -1,6 +1,4 @@
 [
-  { "id": "school_name", "label": "School Name", "type": "text" },
-  { "id": "school_logo", "label": "School Logo (Top Right)", "type": "image" },
   { "id": "about_bg", "label": "About Header Background", "type": "image" },
   { "id": "about_title", "label": "About Us Title", "type": "text" },
   { "id": "about_content", "label": "About Us Content", "type": "textarea" },
