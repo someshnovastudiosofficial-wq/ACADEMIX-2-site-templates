@@ -1,0 +1,57 @@
+[
+  {
+    "id": "school_name",
+    "label": "School Name",
+    "type": "text"
+  },
+  {
+    "id": "school_tagline",
+    "label": "Tagline (e.g. CBSE Affiliated)",
+    "type": "text"
+  },
+  {
+    "id": "phone",
+    "label": "Contact Phone",
+    "type": "text"
+  },
+  {
+    "id": "email",
+    "label": "Contact Email",
+    "type": "text"
+  },
+  {
+    "id": "address",
+    "label": "School Address",
+    "type": "textarea"
+  },
+  {
+    "id": "hero_title_1",
+    "label": "Hero Title (First Part)",
+    "type": "text"
+  },
+  {
+    "id": "hero_title_highlight",
+    "label": "Hero Title (Highlighted)",
+    "type": "text"
+  },
+  {
+    "id": "hero_subtitle",
+    "label": "Hero Subtitle",
+    "type": "textarea"
+  },
+  {
+    "id": "about_heading",
+    "label": "About Us Heading",
+    "type": "text"
+  },
+  {
+    "id": "about_text_1",
+    "label": "About Us Paragraph 1",
+    "type": "textarea"
+  },
+  {
+    "id": "about_text_2",
+    "label": "About Us Paragraph 2",
+    "type": "textarea"
+  }
+]
