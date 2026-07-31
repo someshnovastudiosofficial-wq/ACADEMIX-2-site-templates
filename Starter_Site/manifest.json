@@ -1,4 +1,5 @@
 {
+  "global_settings": "schema_global.json",
   "pages": [
     {
       "id": "home",
