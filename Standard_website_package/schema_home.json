@@ -2,6 +2,10 @@
   { "id": "hero_bg", "label": "Hero Background Image", "type": "image" },
   { "id": "hero_title", "label": "Hero Title", "type": "text" },
   { "id": "hero_subtitle", "label": "Hero Subtitle", "type": "textarea" },
+  { "id": "principal_photo", "label": "Principal's Photo", "type": "image" },
+  { "id": "principal_name", "label": "Principal's Name", "type": "text" },
+  { "id": "principal_designation", "label": "Principal's Designation (e.g. Principal, Founder)", "type": "text" },
+  { "id": "principal_message", "label": "Message from the Principal's Desk", "type": "textarea" },
   {
     "id": "stats",
     "label": "Quick Stats (e.g. Years, Students, Teachers, Results)",
