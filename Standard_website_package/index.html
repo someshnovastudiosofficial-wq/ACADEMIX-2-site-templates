@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ hero_subtitle | default('Empowering the leaders of tomorrow through innovation, dedication, and excellence in education.') }}">
+    <link rel="icon" href="{{ global_logo | default('assets/default-logo.png') }}">
+    <title>{{ global_school_name | default("ACADEMIX Academy") }} - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --primary-dark:#1d4ed8; --dark: #0f172a; --light: #f8fafc; --text: #334155; --academix-orange: #f97316; --font: 'Poppins', sans-serif; --notice-h: 0px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); color: var(--text); background: var(--light); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        a { text-decoration: none; transition: 0.3s; }
+        img { max-width: 100%; }
+        h1, h2, h3 { color: var(--dark); }
+
+        /* Notice ticker */
+        .notice-bar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1001; background: var(--dark); color: #fff; overflow: hidden; white-space: nowrap; padding: 0.55rem 0; font-size: 0.85rem; font-weight: 600; }
+        .notice-track { display: inline-block; padding-left: 100%; animation: marquee 24s linear infinite; }
+        .notice-track span { margin-right: 5rem; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+        nav.navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: var(--notice-h); z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-left { display: flex; gap: 2rem; align-items: center; transition: 0.3s ease-in-out; }
+        .nav-left a { font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; position: relative; }
+        .nav-left a:hover { color: var(--primary); }
+        .nav-left a.active { color: var(--primary); }
+        .nav-left a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--primary); border-radius: 2px; }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--dark); padding: 5px; }
+
+        .nav-right { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; background: #fff; }
+        .nav-right img { width: 100%; height: 100%; }
+        .logo-transparent { background: transparent; border-radius: 0; box-shadow: none; height: 50px; width: auto; }
+        .logo-transparent img { object-fit: contain; }
+        .logo-round { border-radius: 50%; width: 58px; height: 58px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #fff; }
+        .logo-round img { object-fit: cover; }
+        .logo-square { border-radius: 12px; width: 58px; height: 58px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 4px; }
+        .logo-square img { object-fit: contain; }
+        .logo-rectangle { border-radius: 8px; width: auto; height: 50px; padding: 4px 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .logo-rectangle img { object-fit: contain; }
+
+        footer { background: var(--dark); color: #fff; padding: 3rem 5% 1.5rem 5%; margin-top: auto; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .footer-brand p { color: #94a3b8; font-size: 0.9rem; max-width: 320px; }
+        .footer-col h4 { color: #fff; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col a { display: block; color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: #fff; }
+        .footer-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
+        .footer-socials a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+        .footer-socials a:hover { background: var(--primary); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; font-size: 0.85rem; color: #94a3b8; }
+        .footer-powered { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: var(--academix-orange); }
+
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+        @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+            .nav-left { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); flex-direction: column; padding: 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-height: 0; overflow: hidden; gap: 0; }
+            .nav-left.active { max-height: 500px; padding: 1rem 0; }
+            .nav-left a { padding: 1rem 2rem; width: 100%; text-align: center; border-bottom: 1px solid #eee; }
+            .nav-left a:last-child { border-bottom: none; }
+            .nav-left a.active::after { display: none; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { max-width: none; margin: 0 auto; }
+            .footer-socials { justify-content: center; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+
+        .hero { height: 100vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 0 20px; }
+        .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,23,42,0.7), rgba(15,23,42,0.9)); }
+        .hero-content { position: relative; z-index: 2; color: #fff; max-width: 800px; }
+        .hero h1 { color: #fff; font-size: 4rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-up { animation: fadeInUp 1s ease-out forwards; }
+
+        .stats { background: var(--dark); padding: 3.5rem 5%; }
+        .stats-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center; }
+        .stat-number { color: #fff; font-size: 2.6rem; font-weight: 800; display: block; }
+        .stat-label { color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.4rem; }
+
+        .features { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-heading { text-align: center; margin-bottom: 3rem; }
+        .section-heading h2 { font-size: 2.3rem; margin-bottom: 0.6rem; }
+        .section-heading p { color: #64748b; max-width: 600px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .feature-card { background: #fff; padding: 2.5rem; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+
+        .about-teaser { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .about-teaser img { border-radius: 1rem; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15); width: 100%; height: 400px; object-fit: cover; }
+        .about-teaser h2 { font-size: 2.2rem; margin-bottom: 1.2rem; }
+        .about-teaser p { color: #64748b; margin-bottom: 1.5rem; }
+        .btn-primary { display: inline-block; background: var(--primary); color: #fff; padding: 0.9rem 2rem; border-radius: 0.6rem; font-weight: 600; }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .gallery { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+        .gallery-item { position: relative; border-radius: 0.8rem; overflow: hidden; height: 220px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item span { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,23,42,0.85), transparent); color: #fff; padding: 1.5rem 1rem 0.6rem; font-size: 0.85rem; font-weight: 600; }
+
+        .testimonials { background: #eef2ff; padding: 5rem 5%; }
+        .testimonials-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .testimonial-card { background: #fff; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .testimonial-card p.quote { font-style: italic; color: var(--text); margin-bottom: 1.2rem; }
+        .testimonial-card .who { font-weight: 700; color: var(--dark); }
+        .testimonial-card .role { font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        .cta-banner { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 4rem 5%; text-align: center; }
+        .cta-banner h2 { color: #fff; font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .cta-banner p { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 1.75rem auto; }
+        .cta-banner .btn-primary { background: #fff; color: var(--primary); }
+        .cta-banner .btn-primary:hover { background: #f1f5f9; }
+
+        @media (max-width: 850px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1rem; }
+            .about-teaser { grid-template-columns: 1fr; }
+            .about-teaser img { height: 260px; }
+        }
+
+    </style>
+</head>
+<body>
+    {% if notice_text %}
+    <div class="notice-bar">
+        <div class="notice-track"><span>&#128226; {{ notice_text }}</span><span>&#128226; {{ notice_text }}</span><span>&#128226; {{ notice_text }}</span></div>
+    </div>
+    {% endif %}
+    <nav class="navbar">
+        <button class="menu-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
+            <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="nav-left" id="navLinks">
+            {% for p in pages %}
+                <a href="{{ p.html_file | default('#') }}" class="{{ 'active' if p.id == 'home' else '' }}">{{ p.title | default('Page') }}</a>
+            {% endfor %}
+        </div>
+        <div class="nav-right {{ logo_shape | default('logo-transparent') }}">
+            <img src="{{ global_logo | default('assets/default-logo.png') }}" alt="{{ global_school_name | default('School') }} Logo" loading="lazy" onerror="this.onerror=null;this.src='assets/default-logo.png';">
+        </div>
+    </nav>
+
+    <header class="hero" style="background-image: url('{{ hero_bg | default('assets/hero-placeholder.jpg') }}');">
+        <div class="hero-content animate-up">
+            <h1>{{ hero_title | default("Welcome to " ~ (global_school_name | default("ACADEMIX"))) }}</h1>
+            <p>{{ hero_subtitle | default("Empowering the leaders of tomorrow through innovation, dedication, and excellence in education.") }}</p>
+            <a class="btn-primary" href="admission.html">Apply for Admission</a>
+        </div>
+    </header>
+
+    {% if stats %}
+    <section class="stats">
+        <div class="stats-grid">
+            {% for s in stats %}
+            <div>
+                <span class="stat-number">{{ s.stat_number | default("0") }}</span>
+                <span class="stat-label">{{ s.stat_label | default("Stat") }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="features">
+        <div class="section-heading">
+            <h2>Why Choose Us</h2>
+            <p>The values and strengths that set our school apart.</p>
+        </div>
+        <div class="features-grid">
+            {% for item in core_features %}
+            <div class="feature-card">
+                <h3>{{ item.feature_title | default("Core Value") }}</h3>
+                <p>{{ item.feature_desc | default("Description of our core value goes here.") }}</p>
+            </div>
+            {% else %}
+            <div class="feature-card">
+                <h3>Excellence</h3>
+                <p>We strive for academic and personal excellence in everything we do.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="about-teaser">
+        <img src="{{ home_about_image | default('assets/about-placeholder.jpg') }}" alt="About {{ global_school_name | default('our school') }}" loading="lazy" onerror="this.onerror=null;this.src='assets/about-placeholder.jpg';">
+        <div>
+            <h2>{{ home_about_title | default("About Our School") }}</h2>
+            <p>{{ home_about_text | default("We are dedicated to providing a nurturing and innovative environment where every student is encouraged to discover their potential, guided by experienced educators and a curriculum built for the future.") }}</p>
+            <a class="btn-primary" href="about.html">Learn More About Us</a>
+        </div>
+    </section>
+
+    {% if gallery_preview %}
+    <section class="gallery">
+        <div class="section-heading">
+            <h2>Campus Glimpses</h2>
+            <p>A quick look at life on our campus.</p>
+        </div>
+        <div class="gallery-grid">
+            {% for g in gallery_preview %}
+            <div class="gallery-item">
+                <img src="{{ g.gallery_photo | default('assets/gallery-placeholder.jpg') }}" alt="{{ g.gallery_caption | default('Campus photo') }}" loading="lazy" onerror="this.onerror=null;this.src='assets/gallery-placeholder.jpg';">
+                {% if g.gallery_caption %}<span>{{ g.gallery_caption }}</span>{% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if testimonials %}
+    <section class="testimonials">
+        <div class="section-heading">
+            <h2>What Our Community Says</h2>
+            <p>Feedback from the parents and students who know us best.</p>
+        </div>
+        <div class="testimonials-grid">
+            {% for t in testimonials %}
+            <div class="testimonial-card">
+                <p class="quote">&ldquo;{{ t.testimonial_text | default("A wonderful place for children to learn and grow.") }}&rdquo;</p>
+                <p class="who">{{ t.testimonial_author | default("Parent") }}</p>
+                <p class="role">{{ t.testimonial_role | default("") }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="cta-banner">
+        <h2>{{ cta_title | default("Admissions Open for 2026-27") }}</h2>
+        <p>{{ cta_subtitle | default("Limited seats available. Secure your child's future with us today.") }}</p>
+        <a class="btn-primary" href="{{ cta_button_link | default('admission.html') }}">{{ cta_button_text | default("Apply Now") }}</a>
+    </section>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>{{ global_school_name | default("ACADEMIX Academy") }}</h3>
+                <p>{{ hero_subtitle | default("Empowering the leaders of tomorrow through innovation, dedication, and excellence in education.") }}</p>
+                <div class="footer-socials">
+            {% if facebook_url %}<a href="{{ facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.2c0-.87.24-1.46 1.49-1.46H16.6V4.14C16.32 4.1 15.37 4 14.27 4c-2.3 0-3.87 1.4-3.87 4v2.5H7.9v3h2.5V21h3.1z"/></svg></a>{% endif %}
+            {% if instagram_url %}<a href="{{ instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>{% endif %}
+            {% if youtube_url %}<a href="{{ youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M23 12s0-3.6-.46-5.2a3 3 0 0 0-2.1-2.1C18.8 4 12 4 12 4s-6.8 0-10.44.7a3 3 0 0 0-2.1 2.1C1 8.4 1 12 1 12s0 3.6.46 5.2a3 3 0 0 0 2.1 2.1C7.2 20 12 20 12 20s6.8 0 10.44-.7a3 3 0 0 0 2.1-2.1C23 15.6 23 12 23 12z" opacity="0"/><path d="M9.75 15.02 15.5 12 9.75 8.98v6.04z"/></svg></a>{% endif %}
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                {% for p in pages %}<a href="{{ p.html_file | default('#') }}">{{ p.title | default('Page') }}</a>{% endfor %}
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="contact.html">{{ address | default(global_address | default("Visit our Contact page")) }}</a>
+                <a href="tel:{{ (global_phone | default('')) | replace(' ', '') }}">{{ global_phone | default("") }}</a>
+                <a href="mailto:{{ global_email | default('') }}">{{ global_email | default("") }}</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>{{ global_school_name | default("ACADEMIX Academy") }} &copy; <span id="cur-year"></span> - All rights reserved</p>
+            <p class="footer-powered">POWERED BY ACADEMIX 2 a product of Somesh nova studios@2026-all rights reserved</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        var y = document.getElementById('cur-year'); if (y) { y.textContent = new Date().getFullYear(); }
+        document.documentElement.style.setProperty('--notice-h', document.querySelector('.notice-bar') ? '38px' : '0px');
+        // Count-up animation for stat numbers
+        document.querySelectorAll('.stat-number').forEach(function(el){
+            var raw = el.textContent.trim();
+            var match = raw.match(/([0-9]+)(.*)/);
+            if(!match) return;
+            var target = parseInt(match[1], 10);
+            var suffix = match[2] || '';
+            var current = 0;
+            el.textContent = '0' + suffix;
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if(entry.isIntersecting){
+                        var steps = 40, i = 0;
+                        var timer = setInterval(function(){
+                            i++;
+                            current = Math.round((target/steps)*i);
+                            el.textContent = (i>=steps ? target : current) + suffix;
+                            if(i>=steps) clearInterval(timer);
+                        }, 30);
+                        obs.disconnect();
+                    }
+                });
+            }, {threshold: 0.4});
+            obs.observe(el);
+        });
+    </script>
+</body>
+</html>

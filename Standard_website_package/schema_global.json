@@ -1,0 +1,33 @@
+[
+  {
+    "id": "logo_shape",
+    "label": "Logo Frame Style",
+    "type": "select",
+    "options": [
+      {"value": "logo-transparent", "label": "No Frame (Transparent)"},
+      {"value": "logo-round", "label": "Round Frame"},
+      {"value": "logo-square", "label": "Square Frame"},
+      {"value": "logo-rectangle", "label": "Rectangle Box"}
+    ]
+  },
+  {
+    "id": "notice_text",
+    "label": "Scrolling Notice / Announcement (leave blank to hide)",
+    "type": "text"
+  },
+  {
+    "id": "facebook_url",
+    "label": "Facebook Page URL (optional)",
+    "type": "text"
+  },
+  {
+    "id": "instagram_url",
+    "label": "Instagram URL (optional)",
+    "type": "text"
+  },
+  {
+    "id": "youtube_url",
+    "label": "YouTube Channel URL (optional)",
+    "type": "text"
+  }
+]

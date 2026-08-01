@@ -1,0 +1,41 @@
+[
+  { "id": "admission_bg", "label": "Header Background", "type": "image" },
+  { "id": "admission_intro", "label": "Admissions Introduction", "type": "textarea" },
+  {
+    "id": "criteria_steps",
+    "label": "Admission Process Steps",
+    "type": "list",
+    "fields": [
+      { "id": "step_title", "label": "Step Title", "type": "text" },
+      { "id": "step_desc", "label": "Step Description", "type": "textarea" }
+    ]
+  },
+  {
+    "id": "documents_required",
+    "label": "Documents Required",
+    "type": "list",
+    "fields": [
+      { "id": "document_name", "label": "Document (e.g. Birth Certificate)", "type": "text" }
+    ]
+  },
+  {
+    "id": "fee_structure",
+    "label": "Fee Structure",
+    "type": "list",
+    "fields": [
+      { "id": "class_name", "label": "Class", "type": "text" },
+      { "id": "admission_fee", "label": "Admission Fee", "type": "text" },
+      { "id": "tuition_fee", "label": "Tuition Fee (Monthly/Annual)", "type": "text" }
+    ]
+  },
+  { "id": "prospectus_link", "label": "Prospectus Download Link (PDF URL)", "type": "text" },
+  {
+    "id": "faq",
+    "label": "Frequently Asked Questions",
+    "type": "list",
+    "fields": [
+      { "id": "faq_question", "label": "Question", "type": "text" },
+      { "id": "faq_answer", "label": "Answer", "type": "textarea" }
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+[
+  { "id": "about_bg", "label": "About Header Background", "type": "image" },
+  { "id": "about_title", "label": "About Us Title", "type": "text" },
+  { "id": "about_content", "label": "Our History", "type": "textarea" },
+  { "id": "vision_text", "label": "Our Vision", "type": "textarea" },
+  { "id": "mission_text", "label": "Our Mission", "type": "textarea" },
+  {
+    "id": "facilities_list",
+    "label": "Campus & Facilities",
+    "type": "list",
+    "fields": [
+      {"id": "facility_name", "label": "Facility (e.g. Smart Classrooms, Library, Playground)", "type": "text"}
+    ]
+  },
+  {
+    "id": "staff_list",
+    "label": "Staff Directory",
+    "type": "list",
+    "fields": [
+      {"id": "staff_name", "label": "Staff Name", "type": "text"},
+      {"id": "staff_role", "label": "Job Title", "type": "text"},
+      {"id": "staff_photo", "label": "Profile Photo", "type": "image"}
+    ]
+  }
+]

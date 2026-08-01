@@ -1,0 +1,8 @@
+[
+  { "id": "contact_bg", "label": "Header Background", "type": "image" },
+  { "id": "address", "label": "School Address", "type": "textarea" },
+  { "id": "phone", "label": "Phone Number", "type": "text" },
+  { "id": "email", "label": "Email Address", "type": "text" },
+  { "id": "office_hours", "label": "Office Hours", "type": "textarea" },
+  { "id": "map_url", "label": "Google Maps Embed URL", "type": "text" }
+]

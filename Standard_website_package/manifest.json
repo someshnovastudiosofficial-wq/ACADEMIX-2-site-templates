@@ -1,0 +1,41 @@
+{
+  "global_settings": "schema_global.json",
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "html_file": "index.html",
+      "schema_file": "schema_home.json"
+    },
+    {
+      "id": "about",
+      "title": "About Us",
+      "html_file": "about.html",
+      "schema_file": "schema_about.json"
+    },
+    {
+      "id": "management",
+      "title": "Management",
+      "html_file": "management.html",
+      "schema_file": "schema_management.json"
+    },
+    {
+      "id": "admission",
+      "title": "Admissions",
+      "html_file": "admission.html",
+      "schema_file": "schema_admission.json"
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "html_file": "contact.html",
+      "schema_file": "schema_contact.json"
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy Policy",
+      "html_file": "privacy.html",
+      "schema_file": "schema_privacy.json"
+    }
+  ]
+}

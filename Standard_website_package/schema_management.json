@@ -1,0 +1,23 @@
+[
+  { "id": "management_bg", "label": "Header Background", "type": "image" },
+  { "id": "directors_message", "label": "Director's Message", "type": "textarea" },
+  {
+    "id": "achievements",
+    "label": "Achievements & Milestones",
+    "type": "list",
+    "fields": [
+      { "id": "achievement_title", "label": "Title (e.g. Best School Award 2024)", "type": "text" },
+      { "id": "achievement_desc", "label": "Description", "type": "textarea" }
+    ]
+  },
+  {
+    "id": "board_members",
+    "label": "Board of Directors / Management",
+    "type": "list",
+    "fields": [
+      { "id": "member_name", "label": "Name", "type": "text" },
+      { "id": "member_role", "label": "Role / Title", "type": "text" },
+      { "id": "member_photo", "label": "Photo", "type": "image" }
+    ]
+  }
+]

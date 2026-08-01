@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ directors_message | default('Meet our board of directors, leadership team, and school milestones.') }}">
+    <link rel="icon" href="{{ global_logo | default('assets/default-logo.png') }}">
+    <title>{{ global_school_name | default("ACADEMIX Academy") }} - Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --primary-dark:#1d4ed8; --dark: #0f172a; --light: #f8fafc; --text: #334155; --academix-orange: #f97316; --font: 'Poppins', sans-serif; --notice-h: 0px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font); color: var(--text); background: var(--light); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        a { text-decoration: none; transition: 0.3s; }
+        img { max-width: 100%; }
+        h1, h2, h3 { color: var(--dark); }
+
+        /* Notice ticker */
+        .notice-bar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1001; background: var(--dark); color: #fff; overflow: hidden; white-space: nowrap; padding: 0.55rem 0; font-size: 0.85rem; font-weight: 600; }
+        .notice-track { display: inline-block; padding-left: 100%; animation: marquee 24s linear infinite; }
+        .notice-track span { margin-right: 5rem; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+        nav.navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: var(--notice-h); z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-left { display: flex; gap: 2rem; align-items: center; transition: 0.3s ease-in-out; }
+        .nav-left a { font-weight: 600; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; position: relative; }
+        .nav-left a:hover { color: var(--primary); }
+        .nav-left a.active { color: var(--primary); }
+        .nav-left a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--primary); border-radius: 2px; }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--dark); padding: 5px; }
+
+        .nav-right { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; background: #fff; }
+        .nav-right img { width: 100%; height: 100%; }
+        .logo-transparent { background: transparent; border-radius: 0; box-shadow: none; height: 50px; width: auto; }
+        .logo-transparent img { object-fit: contain; }
+        .logo-round { border-radius: 50%; width: 58px; height: 58px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #fff; }
+        .logo-round img { object-fit: cover; }
+        .logo-square { border-radius: 12px; width: 58px; height: 58px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 4px; }
+        .logo-square img { object-fit: contain; }
+        .logo-rectangle { border-radius: 8px; width: auto; height: 50px; padding: 4px 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .logo-rectangle img { object-fit: contain; }
+
+        footer { background: var(--dark); color: #fff; padding: 3rem 5% 1.5rem 5%; margin-top: auto; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .footer-brand p { color: #94a3b8; font-size: 0.9rem; max-width: 320px; }
+        .footer-col h4 { color: #fff; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col a { display: block; color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.6rem; }
+        .footer-col a:hover { color: #fff; }
+        .footer-socials { display: flex; gap: 0.75rem; margin-top: 1rem; }
+        .footer-socials a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+        .footer-socials a:hover { background: var(--primary); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; font-size: 0.85rem; color: #94a3b8; }
+        .footer-powered { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: var(--academix-orange); }
+
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+        @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+            .nav-left { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); flex-direction: column; padding: 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-height: 0; overflow: hidden; gap: 0; }
+            .nav-left.active { max-height: 500px; padding: 1rem 0; }
+            .nav-left a { padding: 1rem 2rem; width: 100%; text-align: center; border-bottom: 1px solid #eee; }
+            .nav-left a:last-child { border-bottom: none; }
+            .nav-left a.active::after { display: none; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand p { max-width: none; margin: 0 auto; }
+            .footer-socials { justify-content: center; }
+            .footer-bottom { justify-content: center; text-align: center; }
+        }
+
+        .page-header { height: 40vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; margin-top: calc(80px + var(--notice-h)); }
+        .page-header::before { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,0.8); }
+        .page-header h1 { position: relative; z-index: 2; color: #fff; font-size: 3rem; font-weight: 800; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 20px; }
+
+        .message-box { background: #fff; padding: 3rem; border-left: 5px solid var(--primary); border-radius: 0 1rem 1rem 0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin-bottom: 4rem; font-style: italic; font-size: 1.1rem; }
+
+        .section-heading { text-align: center; margin-bottom: 2.5rem; }
+        .section-heading h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .section-heading p { color: #64748b; max-width: 600px; margin: 0 auto; }
+
+        .achieve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        .achieve-card { background: #fff; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-top: 4px solid var(--academix-orange); }
+        .achieve-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
+        .achieve-card p { color: #64748b; font-size: 0.95rem; }
+
+        .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .board-card { background: #fff; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-align: center; padding-bottom: 2rem; transition: transform 0.3s ease; }
+        .board-card:hover { transform: translateY(-10px); }
+        .board-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 1.5rem; }
+        .board-card h3 { font-size: 1.2rem; }
+        .board-card p { color: var(--primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+    {% if notice_text %}
+    <div class="notice-bar">
+        <div class="notice-track"><span>&#128226; {{ notice_text }}</span><span>&#128226; {{ notice_text }}</span><span>&#128226; {{ notice_text }}</span></div>
+    </div>
+    {% endif %}
+    <nav class="navbar">
+        <button class="menu-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
+            <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="nav-left" id="navLinks">
+            {% for p in pages %}
+                <a href="{{ p.html_file | default('#') }}" class="{{ 'active' if p.id == 'management' else '' }}">{{ p.title | default('Page') }}</a>
+            {% endfor %}
+        </div>
+        <div class="nav-right {{ logo_shape | default('logo-transparent') }}">
+            <img src="{{ global_logo | default('assets/default-logo.png') }}" alt="{{ global_school_name | default('School') }} Logo" loading="lazy" onerror="this.onerror=null;this.src='assets/default-logo.png';">
+        </div>
+    </nav>
+
+    <header class="page-header" style="background-image: url('{{ management_bg | default('assets/management-placeholder.jpg') }}');">
+        <h1>Leadership &amp; Management</h1>
+    </header>
+
+    <div class="container">
+        <div class="message-box">
+            "{{ directors_message | default("Education is the passport to the future, for tomorrow belongs to those who prepare for it today. Our management team is deeply committed to fostering an environment where innovation meets tradition.") }}"
+            <br><br><strong>- Board of Directors</strong>
+        </div>
+
+        {% if achievements %}
+        <div class="section-heading">
+            <h2>Achievements &amp; Milestones</h2>
+            <p>Recognitions that reflect our commitment to excellence.</p>
+        </div>
+        <div class="achieve-grid">
+            {% for a in achievements %}
+            <div class="achieve-card">
+                <h3>{{ a.achievement_title | default("Achievement") }}</h3>
+                <p>{{ a.achievement_desc | default("") }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="section-heading">
+            <h2>Board Members</h2>
+            <p>The people guiding our school's growth and values.</p>
+        </div>
+        <div class="board-grid">
+            {% for member in board_members %}
+            <div class="board-card">
+                <img src="{{ member.member_photo | default('assets/default-avatar.jpg') }}" alt="{{ member.member_name | default('Board member') }}" loading="lazy" onerror="this.onerror=null;this.src='assets/default-avatar.jpg';">
+                <h3>{{ member.member_name | default("Name") }}</h3>
+                <p>{{ member.member_role | default("Title") }}</p>
+            </div>
+            {% else %}
+            <div class="board-card">
+                <img src="assets/default-avatar.jpg" alt="Default" loading="lazy">
+                <h3>Dr. Robert Smith</h3>
+                <p>Chairman</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>{{ global_school_name | default("ACADEMIX Academy") }}</h3>
+                <p>{{ hero_subtitle | default("Empowering the leaders of tomorrow through innovation, dedication, and excellence in education.") }}</p>
+                <div class="footer-socials">
+            {% if facebook_url %}<a href="{{ facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-7.5h2.5l.5-3h-3V8.2c0-.87.24-1.46 1.49-1.46H16.6V4.14C16.32 4.1 15.37 4 14.27 4c-2.3 0-3.87 1.4-3.87 4v2.5H7.9v3h2.5V21h3.1z"/></svg></a>{% endif %}
+            {% if instagram_url %}<a href="{{ instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>{% endif %}
+            {% if youtube_url %}<a href="{{ youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M23 12s0-3.6-.46-5.2a3 3 0 0 0-2.1-2.1C18.8 4 12 4 12 4s-6.8 0-10.44.7a3 3 0 0 0-2.1 2.1C1 8.4 1 12 1 12s0 3.6.46 5.2a3 3 0 0 0 2.1 2.1C7.2 20 12 20 12 20s6.8 0 10.44-.7a3 3 0 0 0 2.1-2.1C23 15.6 23 12 23 12z" opacity="0"/><path d="M9.75 15.02 15.5 12 9.75 8.98v6.04z"/></svg></a>{% endif %}
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                {% for p in pages %}<a href="{{ p.html_file | default('#') }}">{{ p.title | default('Page') }}</a>{% endfor %}
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="contact.html">{{ address | default(global_address | default("Visit our Contact page")) }}</a>
+                <a href="tel:{{ (global_phone | default('')) | replace(' ', '') }}">{{ global_phone | default("") }}</a>
+                <a href="mailto:{{ global_email | default('') }}">{{ global_email | default("") }}</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>{{ global_school_name | default("ACADEMIX Academy") }} &copy; <span id="cur-year"></span> - All rights reserved</p>
+            <p class="footer-powered">POWERED BY ACADEMIX 2 a product of Somesh nova studios@2026-all rights reserved</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        var y = document.getElementById('cur-year'); if (y) { y.textContent = new Date().getFullYear(); }
+        document.documentElement.style.setProperty('--notice-h', document.querySelector('.notice-bar') ? '38px' : '0px');
+        // Count-up animation for stat numbers
+        document.querySelectorAll('.stat-number').forEach(function(el){
+            var raw = el.textContent.trim();
+            var match = raw.match(/([0-9]+)(.*)/);
+            if(!match) return;
+            var target = parseInt(match[1], 10);
+            var suffix = match[2] || '';
+            var current = 0;
+            el.textContent = '0' + suffix;
+            var obs = new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if(entry.isIntersecting){
+                        var steps = 40, i = 0;
+                        var timer = setInterval(function(){
+                            i++;
+                            current = Math.round((target/steps)*i);
+                            el.textContent = (i>=steps ? target : current) + suffix;
+                            if(i>=steps) clearInterval(timer);
+                        }, 30);
+                        obs.disconnect();
+                    }
+                });
+            }, {threshold: 0.4});
+            obs.observe(el);
+        });
+    </script>
+</body>
+</html>

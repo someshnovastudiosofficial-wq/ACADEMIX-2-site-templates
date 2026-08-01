@@ -1,0 +1,49 @@
+[
+  { "id": "hero_bg", "label": "Hero Background Image", "type": "image" },
+  { "id": "hero_title", "label": "Hero Title", "type": "text" },
+  { "id": "hero_subtitle", "label": "Hero Subtitle", "type": "textarea" },
+  {
+    "id": "stats",
+    "label": "Quick Stats (e.g. Years, Students, Teachers, Results)",
+    "type": "list",
+    "fields": [
+      {"id": "stat_number", "label": "Number (e.g. 8+, 500+, 100%)", "type": "text"},
+      {"id": "stat_label", "label": "Label (e.g. Years of Excellence)", "type": "text"}
+    ]
+  },
+  {
+    "id": "core_features",
+    "label": "Core Features",
+    "type": "list",
+    "fields": [
+      {"id": "feature_title", "label": "Feature Title", "type": "text"},
+      {"id": "feature_desc", "label": "Feature Description", "type": "textarea"}
+    ]
+  },
+  { "id": "home_about_title", "label": "Home 'About' Teaser Title", "type": "text" },
+  { "id": "home_about_text", "label": "Home 'About' Teaser Text", "type": "textarea" },
+  { "id": "home_about_image", "label": "Home 'About' Teaser Image", "type": "image" },
+  {
+    "id": "gallery_preview",
+    "label": "Homepage Gallery Preview",
+    "type": "list",
+    "fields": [
+      {"id": "gallery_photo", "label": "Photo", "type": "image"},
+      {"id": "gallery_caption", "label": "Caption", "type": "text"}
+    ]
+  },
+  {
+    "id": "testimonials",
+    "label": "Parent / Student Testimonials",
+    "type": "list",
+    "fields": [
+      {"id": "testimonial_text", "label": "Quote", "type": "textarea"},
+      {"id": "testimonial_author", "label": "Name", "type": "text"},
+      {"id": "testimonial_role", "label": "Role (e.g. Parent, Class 8 Student)", "type": "text"}
+    ]
+  },
+  { "id": "cta_title", "label": "Admissions Banner Title", "type": "text" },
+  { "id": "cta_subtitle", "label": "Admissions Banner Subtitle", "type": "textarea" },
+  { "id": "cta_button_text", "label": "Admissions Banner Button Text", "type": "text" },
+  { "id": "cta_button_link", "label": "Admissions Banner Button Link", "type": "text" }
+]
